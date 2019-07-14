@@ -1,19 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './LoginForm.css';
 import AuthContext from '../../../context/auth/AuthContext';
 import { Link, withRouter } from 'react-router-dom';
+import AlertContext from '../../../context/alert/AlertContext';
 import setAuthToken from '../../../utils/setAuthToken';
 
 const LoginForm = props => {
 
     const authContext = useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
 
-    const { login } = authContext;
+    const { login, error, clearErrors, isAuthenticated } = authContext;
+    const { setAlert } = alertContext;
 
-    if (localStorage.token) {
-        setAuthToken(localStorage.token);
-        props.history.push('/');
-    }
+    useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/');
+        }
+
+        if (error === 'Invalid Credentials') {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+        // eslint-disable-next-line
+    }, [error, isAuthenticated, props.history]);
 
 
     const [user, setUser] = useState({
@@ -27,15 +37,17 @@ const LoginForm = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log('Submit fired')
-        login({
-            email,
-            password
-        });
+        if (email === '' || password === '') {
+            setAlert('Please fill in all fields', 'danger');
+        } else {
+            login({
+                email,
+                password
+            });
 
-    };
+        };
 
-
+    }
 
     return (
 
