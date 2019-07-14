@@ -1,0 +1,77 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+#editJob,
+#deleteJob {
+  min-width: 100px;
+  margin: 15px;
+  padding: none !important;
+  display: inline-block;
+  background: rgb(16, 209, 9);
+  border-radius: 25px;
+}
+#EditJobBtn button {
+  width: 100px;
+  margin: 15px;
+}
+#editTc,
+#deleteTc {
+  min-width: 100px;
+  margin: 15px;
+  padding: none !important;
+  display: inline-block;
+  background: rgb(16, 209, 9);
+  border-radius: 25px;
+}
+#deleteTc {
+  background-color: red;
+}
+#editJobCardReveal {
+  background: rgb(16, 209, 9);
+  border-radius: 25px;
+}
+
+#editJobCardReveal:hover {
+  background: rgb(202, 215, 255);
+}
+
+#editJob:hover {
+  background: rgb(202, 215, 255);
+}
+
+#deleteJob {
+  background: red;
+}
+
+#deleteJob:hover {
+  background: rgb(255, 171, 171);
+}
+.mb {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  #modal {
+    width: 100%;
+    left: 0;
+  }
+  .smallScreen {
+    display: none;
+  }
+  .mb {
+    margin-bottom: auto;
+    padding: 10px;
+  }
+  .page-footer {
+    padding: 0;
+  }
+  .heightSize {
+    height: 80%;
+  }
+}

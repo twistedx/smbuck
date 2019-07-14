@@ -1,0 +1,15 @@
+.container{
+    display: grid;
+}
+
+p{
+    font-size: 15px;
+}
+.title{
+    font-size: 18px;
+    font-weight: 600;
+}
+.card-reveal ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

@@ -1,0 +1,20 @@
+#copyrightFooter {
+  background-image: linear-gradient(
+    to right,
+    rgb(2, 97, 7),
+    rgb(42, 138, 13),
+    rgb(7, 145, 19),
+    rgb(8, 214, 25)
+  );
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h6 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-style: italic;
+}
+
+#quoteFooter {
+  background: rgb(241, 240, 254);
+  color: rgb(20, 58, 8);
+}
