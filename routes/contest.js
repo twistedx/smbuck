@@ -3,7 +3,6 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const User = require('../models/User');
 const Entry = require('../models/Entry');
-
 const auth = require('../middleware/auth');
 
 //@route        GET api/contest
