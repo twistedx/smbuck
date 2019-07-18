@@ -8,14 +8,21 @@ const ContestSchema = mongoose.Schema({
     },
     contestants: {
         type: Array,
-        ref: 'user'
+        ref: 'contestants'
     },
     description: {
         type: String
     },
     date: {
         type: Date,
-        default: Date.getYear()
+        default: Date.now()
+    },
+    type: {
+        type: String
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
     }
 
 })

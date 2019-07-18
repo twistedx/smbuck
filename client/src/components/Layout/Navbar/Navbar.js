@@ -7,7 +7,7 @@ import DropDownMenu from '../../Layout/DropdownMenu/DropdownMenu.js';
 import './Navbar.css';
 import HomeBtn from '../HomeBtn/HomeBtn';
 import JobModal from '../../Modal/EntryModal'
-
+import Alerts from '../../Layout/Alerts'
 
 
 const Navbar = (props) => {
@@ -34,9 +34,9 @@ const Navbar = (props) => {
                     <div>
                         <DropDownMenu visible={props.dropdown ? true : false} />
                         <HomeBtn visible={props.home ? true : false} />
-                        <JobModal visible={props.addJob ? true : false} token={props.token} />
                     </div>
                 </nav>
+                <Alerts />
             </header>
         </Fragment>
 

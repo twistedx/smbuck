@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const User = require('../models/User');
-const Entry = require('../models/Entry');
+const Contest = require('../models/Contest');
 const auth = require('../middleware/auth');
 
 //@route        GET api/contest
@@ -10,12 +10,10 @@ const auth = require('../middleware/auth');
 //@access       PRIVATE 
 
 router.get('/', auth, async (req, res) => {
-    const id = req.user.id;
-    console.log(`this is the user id from req.user.id:
-    ${id}`);
     try {
-        const contest = await Contest.find({ user: id }).sort({ date: -1 });
-        res.json(entry);
+        const contest = await Contest.findOne({});
+        console.log(contest)
+        res.json(contest);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')
@@ -23,40 +21,43 @@ router.get('/', auth, async (req, res) => {
 })
 
 
-//@route        GET api/contest/id
-//@description  GET one contest from the contests page
-//@access       PRIVATE 
+// @route        GET api/contest/id
+// @description  GET one contest from the contests page
+// @access       PRIVATE 
 
 router.get('/:id', auth, async (req, res) => {
     const id = req.user.id;
     try {
         const contest = await Contest.find({ user: id });
-        console.log(entry);
-        res.json(entry);
+        console.log(contest);
+        res.json(contest);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')
     }
 })
 
-//@route        POST api/entry
-//@description  Add new entry
-//@access       Private
+// @route        POST api/contest
+// @description  Add new contest
+// @access       Private
 
 router.post('/', [auth, [
     check('name', 'Name is required').not().isEmpty()
 ]], async (req, res) => {
+    console.log("post route initiated")
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
     const { name, description, contestants } = req.body;
+    console.log(req.body);
     try {
         const newContest = new Contest({
-            name, description, contestants, creator: req.user.id
+            name, description, contestants, type, owner: req.user.id
         });
 
         const contest = await newContest.save();
+        console.log(`this is contest right after the save function ${contest}`)
         res.json(contest);
 
     } catch (err) {
@@ -71,7 +72,7 @@ router.post('/', [auth, [
 
 router.put('/:id', auth, async (req, res) => {
     const { name, contestants } = req.body;
-    //build a entry object
+    //build a contest object
 
     const contestFields = {};
     if (name) contestFields.name = name;
@@ -82,7 +83,7 @@ router.put('/:id', auth, async (req, res) => {
 
         if (!contest) return res.status(404).json({ msg: 'Contest not found' });
 
-        //make sure user owns entry
+        //make sure user owns contest
         if (contest.user.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'Not Authorized' });
         }
@@ -97,8 +98,8 @@ router.put('/:id', auth, async (req, res) => {
 
 })
 
-//@route        DELETE api/entry/:id
-//@description  Delete entry
+//@route        DELETE api/contest/:id
+//@description  Delete contest
 //@access       Private
 
 router.delete('/:id', auth, async (req, res) => {
@@ -109,7 +110,7 @@ router.delete('/:id', auth, async (req, res) => {
 
         if (!contest) return res.status(404).json({ msg: 'Contest not found' });
 
-        //make sure user owns entry
+        //make sure user owns contest
         if (contest.user.toString() !== req.user.id) {
             return res.status(401).json({ msg: 'Not Authorized' });
         }

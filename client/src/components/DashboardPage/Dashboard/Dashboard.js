@@ -76,7 +76,6 @@ const Dashboard = (props) => {
 
     //fetch Entry Profile ==============================================================================================
     let fetchedContest = useHttp('/api/contest', 'GET', '', h, []);
-    const entryloading = fetchedContest[0];
     const j = fetchedContest[1];
 
     useEffect(() => contestLoadingChecker(j), [j]);
@@ -104,18 +103,8 @@ const Dashboard = (props) => {
                     email={profile === loading ? profile : profile.email}
                     team={profile === loading ? profile : profile.team}
                 />
+                <Contest />
 
-                {fetchedContest === loading ? loadingTimeout() : fetchedContest.map((v, i) => {
-                    return <div className="heightSize"><BtnCardReveal
-                        key={i}
-                        entryId={v._id}
-                        title={v.name}
-                        description={v.description}
-                        contestants={v.contestants}
-                    />
-                    </div>
-                })
-                }
             </main>
         </Fragment>
     )
