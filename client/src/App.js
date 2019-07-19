@@ -6,6 +6,7 @@ import About from './components/pages/About';
 import Register from './components/Register/Register';
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
+import ContestState from './context/contest/ContestState';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import Footer from './components/Layout/Footer/Footer';
@@ -29,19 +30,21 @@ const App = () => {
 
   return (
     <AuthState>
-      <AlertState>
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Dashboard} key={Dashboard.name} />
-            <Route exact path='/about' component={About} key={About.name} />
-            <Route exact path='/register' component={Register} key={Register.name} />
-            <Route exact path='/login' component={LoginPage} key={LoginPage.name} />
-            <Route exact path='/edituser' component={EditUser} key={EditUser.name} />
-            <Route exact path='/editentry/:id' component={EditEntry} key={EditEntry.name} />
-          </Switch>
-          <Footer />
-        </Router>
-      </AlertState>
+      <ContestState>
+        <AlertState>
+          <Router>
+            <Switch>
+              <Route exact path='/' component={Dashboard} key={Dashboard.name} />
+              <Route exact path='/about' component={About} key={About.name} />
+              <Route exact path='/register' component={Register} key={Register.name} />
+              <Route exact path='/login' component={LoginPage} key={LoginPage.name} />
+              <Route exact path='/edituser' component={EditUser} key={EditUser.name} />
+              <Route exact path='/editentry/:id' component={EditEntry} key={EditEntry.name} />
+            </Switch>
+            <Footer />
+          </Router>
+        </AlertState>
+      </ContestState>
     </AuthState>
   )
 }

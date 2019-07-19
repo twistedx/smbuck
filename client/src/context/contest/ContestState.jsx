@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import ContestContext from "./contestContext";
-import contactReducer from "./contestReducer";
+import ContestContext from "./ContestContext";
+import ContestReducer from "./ContestReducer";
 import {
   GET_CONTEST,
   ADD_CONTEST,
@@ -17,15 +17,46 @@ import {
 
 const ContestState = props => {
   const initialState = {
-    contests: null,
+    contests: [
+      {
+        id: 1,
+        title: "Test Case",
+        contestants: [
+          {
+            name: "Test 1"
+          },
+          {
+            name: "Test2"
+          }
+        ],
+        description: "This is sample data",
+        type: "buck",
+        owner: "Bob Villa"
+      },
+      {
+        id: 2,
+        title: "Test Case",
+        contestants: [
+          {
+            name: "Test 1"
+          },
+          {
+            name: "Test2"
+          }
+        ],
+        description: "This is sample data",
+        type: "buck",
+        owner: "Bob Villa"
+      }
+    ],
     current: null,
     filtered: null,
     error: null
   };
 
-  const [state, dispatch] = useReducer(contactReducer, initialState);
+  const [state, dispatch] = useReducer(ContestReducer, initialState);
 
-  // Get Contacts
+  // Get contests
   const getContest = async () => {
     try {
       const res = await axios.get("/api/contest");
@@ -51,7 +82,7 @@ const ContestState = props => {
     };
 
     try {
-      const res = await axios.post("/api/contacts", contest, config);
+      const res = await axios.post("/api/contest", contest, config);
 
       dispatch({
         type: ADD_CONTEST,
@@ -68,7 +99,7 @@ const ContestState = props => {
   // Delete Contest
   const deleteContest = async id => {
     try {
-      await axios.delete(`/api/contacts/${id}`);
+      await axios.delete(`/api/contest/${id}`);
 
       dispatch({
         type: DELETE_CONTEST,
@@ -109,7 +140,7 @@ const ContestState = props => {
     }
   };
 
-  // Clear Contacts
+  // Clear contests
   const clearContest = () => {
     dispatch({ type: CLEAR_CONTEST });
   };
@@ -124,7 +155,7 @@ const ContestState = props => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  // Filter Contacts
+  // Filter contests
   const filterContest = text => {
     dispatch({ type: FILTER_CONTEST, payload: text });
   };
@@ -137,7 +168,7 @@ const ContestState = props => {
   return (
     <ContestContext.Provider
       value={{
-        contests: state.contest,
+        contests: state.contests,
         current: state.current,
         filtered: state.filtered,
         error: state.error,

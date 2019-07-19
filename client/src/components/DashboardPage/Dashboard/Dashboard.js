@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react'
 import UserDashboardCard from '../UserDashboardCard/UserDashboardCard.js';
-import BtnCardReveal from '../../BtnList/BtnCardReveal';
 import EntryModal from '../../Modal/EntryModal';
 import { useHttp } from '../../Hooks/Fetch';
 import AuthContext from '../../../context/auth/AuthContext';
 import setAuthToken from '../../../utils/setAuthToken';
 import loadingImg from '../../../img/loading.gif';
 import Navbar from '../../Layout/Navbar/Navbar';
-
+import Contest from '../Contest/Contest'
 
 
 const Dashboard = (props) => {
@@ -37,9 +36,6 @@ const Dashboard = (props) => {
     const [profile, setProfile] = useState(loading)
     const profileLoadingChecker = (obj) => { obj ? setProfile(obj) : setProfile(loading) };
 
-    const [contest, setContest] = useState(loading)
-    const contestLoadingChecker = (arr) => { arr[0] ? setContest(arr) : setContest(loading) };
-
     const token = authContext.token;
     let h = {
         'Accept': 'application/json',
@@ -64,30 +60,6 @@ const Dashboard = (props) => {
             
             `);
     }
-
-    const loadingTimeout = () => {
-        if (j.length === 0) {
-            return <h3 className="center">Please Create a Entry</h3>;
-        } else {
-            return <img src={loadingImg} style={{ height: '200px', width: '200px', position: 'absolute', top: 'calc(50% - 100px', left: 'calc(50% - 100px' }} />;
-        }
-    }
-
-
-    //fetch Entry Profile ==============================================================================================
-    let fetchedContest = useHttp('/api/contest', 'GET', '', h, []);
-    const j = fetchedContest[1];
-
-    useEffect(() => contestLoadingChecker(j), [j]);
-
-    console.log(`
-        
-        this is contestprofile
-        ${JSON.stringify(j)}
-        
-        `);
-
-
 
     // load dom ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

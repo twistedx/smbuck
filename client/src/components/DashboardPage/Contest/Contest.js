@@ -1,16 +1,16 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ContestItem from './ContestItem';
-import Spinner from '../layout/Spinner';
-import ContestContext from '../../context/contact/contestContext';
+import Spinner from '../../Layout/Spinner';
+import ContestContext from '../../../context/contest/ContestContext';
 
 const Contest = () => {
-    const contactContext = useContext(ContestContext);
+    const contestContext = useContext(ContestContext);
 
-    const { contests, filtered, getContest, loading } = contactContext;
+    const { contests, filtered, getContest, loading } = contestContext;
 
     useEffect(() => {
-        getContest();
+        // getContest();
         // eslint-disable-next-line
     }, []);
 
@@ -23,23 +23,14 @@ const Contest = () => {
             {contests !== null && !loading ? (
                 <TransitionGroup>
                     {filtered !== null
-                        ? filtered.map(contact => (
-                            <CSSTransition
-                                key={contact._id}
-                                timeout={500}
-                                classNames='item'
-                            >
-                                <ContestItem contest={contests} />
-                            </CSSTransition>
+                        ? filtered.map(contests => (
+
+                            <ContestItem contest={contests} />
+
                         ))
-                        : contests.map(contact => (
-                            <CSSTransition
-                                key={contact._id}
-                                timeout={500}
-                                classNames='item'
-                            >
-                                <ContestItem contest={contests} />
-                            </CSSTransition>
+                        : contests.map(contests => (
+                            <ContestItem contest={contests} />
+
                         ))}
                 </TransitionGroup>
             ) : (

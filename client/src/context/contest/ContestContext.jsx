@@ -1,5 +1,5 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-const ccontestContext = createContext();
+const contestContext = createContext();
 
-export default ccontestContext;
+export default contestContext;

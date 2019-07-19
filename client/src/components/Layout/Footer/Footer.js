@@ -16,9 +16,9 @@ const Footer = () => {
         <footer className="page-footer" id="quoteFooter">
             <div className="container">
                 <div className="row mb">
-                    <div className="col l12 m12 s12 center flow-text">
+                    {/* <div className="col l12 m12 s12 center flow-text">
                         <strong><Clock format="HH:mm:ss" ticking={true} interval={1000} /></strong>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="row smallScreen">
                     <div className="col l12 m12 s12 center">

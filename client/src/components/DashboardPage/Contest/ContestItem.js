@@ -1,56 +1,56 @@
-const contactContext = useContext(ContactContext);
-const { deleteContact, setCurrent, clearCurrent } = contactContext;
+import React, { Fragment, useContext, useEffect } from 'react';
+import Spinner from '../../Layout/Spinner';
+import ContestContext from '../../../context/contest/ContestContext';
 
-const { _id, name, description, type } = contact;
+const ContestItem = ({ contest }) => {
+    const contestContext = useContext(ContestContext);
+    const { deleteContest, setCurrent, clearCurrent } = contestContext;
+    // const { id, title, description, type, contestants } = contest
 
-const onDelete = () => {
-    deleteContest(_id);
-    clearCurrent();
-};
+    console.log(contest.title)
+    const onDelete = () => {
+        deleteContest(contest.id);
+        clearCurrent();
+    };
 
-return (
-    <div className='card'>
-        <h3 className='text-primary text-left'>
-            {name}{' '}
-            <span
-                style={{ float: 'right' }}
-                className={
-                    'badge ' +
-                    (type === 'deer' ? 'badge-success' : 'badge-primary')
-                }
-            >
-                {type.charAt(0).toUpperCase() + type.slice(1)}
-            </span>
-        </h3>
-        <span>
-            {description && ({ description })}
+    return (
+        <div className="container">
+            <div className='card'>
+                <h5 className='text-left'>
+                    {contest.title}{' '}
+                    <span
+                        style={{ float: 'right', color: '#fff' }}
+                        className={
+                            'badge ' +
+                            (contest.type === 'buck' ? 'badge-success' : 'badge-primary')
+                        }
+                    >
+                        {contest.type}
+                    </span>
+                </h5>
+                <span>
+                    {contest.description}
 
-        </span>
-        {/* 
-        <ul>
+                </span>
 
-            {contestants && (
-                <li>
-                    <i className='fas fa-phone' /> {
-            )}
-        </ul> */}
-        <p>
-            <button
-                className='btn btn-dark btn-sm'
-                onClick={() => setCurrent(contact)}
-            >
-                Edit
+                <ul>
+                    <strong>Contestants:</strong>
+                    {contest.contestants.map(user => {
+
+                        return <li>{user.name}</li>
+                    })}
+
+                </ul>
+                <p className="">
+                    <button
+                        className='btn center' id="editJob"
+                        onClick={() => setCurrent(contest)}
+                    >
+                        Enter
       </button>
-            <button className='btn btn-danger btn-sm' onClick={onDelete}>
-                Delete
-      </button>
-        </p>
-    </div>
-);
-};
-
-ContactItem.propTypes = {
-    contact: PropTypes.object.isRequired
-};
-
-export default ContactItem;
+                </p>
+            </div>
+        </div>
+    );
+}
+export default ContestItem;
