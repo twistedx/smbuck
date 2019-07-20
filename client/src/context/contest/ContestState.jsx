@@ -27,6 +27,12 @@ const ContestState = props => {
           },
           {
             name: "Test2"
+          },
+          {
+            name: "Test 1"
+          },
+          {
+            name: "Test2"
           }
         ],
         description: "This is sample data",
