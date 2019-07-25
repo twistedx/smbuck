@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
-import AlertContext from '../../context/alert/AlertContext';
-import Navbar from '../Layout/Navbar/Navbar';
+import AuthContext from '../../../context/auth/AuthContext';
+import AlertContext from '../../../context/alert/AlertContext';
+import Navbar from '../../Layout/Navbar/Navbar';
 
 const Register = props => {
 

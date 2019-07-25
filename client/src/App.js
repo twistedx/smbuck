@@ -3,15 +3,16 @@ import Dashboard from './components/DashboardPage/Dashboard/Dashboard';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from './components/pages/About';
-import Register from './components/Register/Register';
+import Register from './components/Forms/Register/Register';
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
 import ContestState from './context/contest/ContestState';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import Footer from './components/Layout/Footer/Footer';
-import EditUser from './components/EditUser/EditUser';
-import EditEntry from './components/EditEntry/EditEntry';
+import EditUser from './components/Forms/EditUser/EditUser';
+import EditEntry from './components/Forms/EditEntry/EditEntry';
+import CCF from './components/Forms/CreateContestForm/CCF';
 import AlertState from './context/alert/AlertState';
 import './App.css';
 
@@ -39,6 +40,7 @@ const App = () => {
               <Route exact path='/register' component={Register} key={Register.name} />
               <Route exact path='/login' component={LoginPage} key={LoginPage.name} />
               <Route exact path='/edituser' component={EditUser} key={EditUser.name} />
+              <Route exact path='/ccf' component={CCF} key={CCF.name} />
               <Route exact path='/editentry/:id' component={EditEntry} key={EditEntry.name} />
             </Switch>
             <Footer />

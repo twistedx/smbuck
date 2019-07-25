@@ -13,57 +13,51 @@ const ContestItem = ({ contest }) => {
         clearCurrent();
     };
     const displayEnteries = () => {
-        if (contest.contestants < 3) {
-            contest.contestants.map(user => {
-                return <Fragment><li>{user.name}</li> </Fragment>
-            })
-        } else {
-            return <Fragment><span>{contest.contestants.length}</span></Fragment>
-        }
+        return <Fragment><span>{contest.contestants.length}</span></Fragment>
     }
+
 
     return (
         <div className="container">
             <div className="row">
                 <div className='card'>
-                    <div className="col l6 m6 sm12">
-                        <h5 className='text-left'>
-                            {contest.title}{' '}
-                            <span
-                                style={{ float: 'right', color: '#fff' }}
-                                className={
-                                    'badge ' +
-                                    (contest.type === 'buck' ? 'badge-success' : 'badge-primary')
-                                }
-                            >
-                                {contest.type}
+                    <div className="grid-2">
+                        <div className="card-content">
+                            <h5 className='text-left card-title '>
+                                {contest.title}{' '}
+                                <span
+                                    style={{ float: 'right', color: '#fff' }}
+                                    className={
+                                        'badge ' +
+                                        (contest.type === 'buck' ? 'badge-success' : 'badge-primary')
+                                    }
+                                >
+                                    {contest.type}
+                                </span>
+                            </h5>
+                            <span>
+                                {contest.description}
+
                             </span>
-                        </h5>
-                        <span>
-                            {contest.description}
 
-                        </span>
+                            <ul>
+                                <strong>Contestants:</strong>
+                                <h6>{displayEnteries()}</h6>
 
-                        <ul>
-                            <strong>Contestants:</strong>
-                            <h6>{displayEnteries()}</h6>
-
-                        </ul>
+                            </ul>
+                        </div>
+                        <div className="valign-wrapper">
+                            <Placeholder image={contest.image} />
+                        </div>
                     </div>
-                    <div className="col l6 m6 s12">
-                        <Placeholder />
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col s12'>
-                        <p className="">
-                            <button
-                                className='btn center' id="editJob"
-                                onClick={() => setCurrent(contest)}
-                            >
-                                Enter
+                    <hr></hr>
+                    <div className="center">
+                        <button
+                            className='btn center' id="editJob"
+                            onClick={() => setCurrent(contest)}
+                        >
+                            SignUp
                          </button>
-                        </p>
                     </div>
                 </div>
             </div>
