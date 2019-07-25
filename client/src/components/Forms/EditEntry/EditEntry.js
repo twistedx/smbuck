@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
-import AuthContext from '../../context/auth/AuthContext';
-import setAuthToken from '../../utils/setAuthToken';
-import Navbar from '../Layout/Navbar/Navbar';
+import AuthContext from '../../../context/auth/AuthContext';
+import setAuthToken from '../../../utils/setAuthToken';
+import Navbar from '../../Layout/Navbar/Navbar';
 
 const EditEntry = ({ match }) => {
 

@@ -17,7 +17,7 @@ const ContestSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    type: {
+    contestType: {
         type: String
     },
     owner: {

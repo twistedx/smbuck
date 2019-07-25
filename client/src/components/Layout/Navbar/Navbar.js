@@ -1,12 +1,11 @@
 import React, { Fragment, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/auth/AuthContext';
 import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import DropDownMenu from '../../Layout/DropdownMenu/DropdownMenu.js';
 import './Navbar.css';
 import HomeBtn from '../HomeBtn/HomeBtn';
-import JobModal from '../../Modal/EntryModal'
+import CreateContest from './CreateContest/CreateContest'
 import Alerts from '../../Layout/Alerts'
 
 
@@ -32,6 +31,7 @@ const Navbar = (props) => {
                         <a href="#!" className="brand-logo center flow-text" id="navTitle">  {props.title} </a>
                     </div>
                     <div>
+                        <CreateContest visible={props.createcontest ? true : false} />
                         <DropDownMenu visible={props.dropdown ? true : false} />
                         <HomeBtn visible={props.home ? true : false} />
                     </div>

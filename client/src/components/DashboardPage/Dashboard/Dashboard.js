@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react'
 import UserDashboardCard from '../UserDashboardCard/UserDashboardCard.js';
-import EntryModal from '../../Modal/EntryModal';
 import { useHttp } from '../../Hooks/Fetch';
 import AuthContext from '../../../context/auth/AuthContext';
 import setAuthToken from '../../../utils/setAuthToken';
@@ -66,10 +65,8 @@ const Dashboard = (props) => {
 
     return (
         <Fragment>
-            <Navbar title="Dashboard" dropdown={true} home={false} addentry={true} token={token} />
+            <Navbar title="Dashboard" dropdown={true} home={false} createcontest={true} token={token} />
             <main>
-
-
                 <UserDashboardCard
                     name={profile === loading ? profile : profile.name}
                     email={profile === loading ? profile : profile.email}

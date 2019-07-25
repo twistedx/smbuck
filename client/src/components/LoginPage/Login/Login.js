@@ -10,11 +10,9 @@ const LoginPage = () => {
     return (
         [
             <Fragment>
-                <Navbar title="CCBCC" dropdown={false} home={false} />
+                <Navbar title="The Hunters Challenge" dropdown={false} home={false} />
                 <main>
-
                     <div className="container">
-
                         <LoginPageLogo />
                         <LoginForm />
                     </div>

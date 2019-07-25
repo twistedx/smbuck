@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import placeholder from './150.png';
 
-export default () => (
+export default (props) => (
     <Fragment>
         <img
             src={placeholder}

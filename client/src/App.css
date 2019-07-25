@@ -130,6 +130,11 @@ main {
   color: #333;
   border: #ccc solid 1px;
 }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
 @media only screen and (max-width: 600px) {
   #modal {
     width: 100%;
