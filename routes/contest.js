@@ -11,9 +11,9 @@ const auth = require('../middleware/auth');
 
 router.get('/', auth, async (req, res) => {
     try {
-        const contest = await Contest.findOne({});
-        console.log(contest)
-        res.json(contest);
+        const contestList = await Contest.find({});
+        console.log(` This is whats in contestList ${contestList}`)
+        res.json(`Here is the contest list from the server ${contestList}`);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')
@@ -41,21 +41,16 @@ router.get('/:id', auth, async (req, res) => {
 // @description  Add new contest
 // @access       Private
 
-router.post('/', [auth, [
-    check('name', 'Name is required').not().isEmpty()
-]], async (req, res) => {
+router.post('/', [auth], async (req, res) => {
     console.log("post route initiated")
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-    const { name, description, contestants } = req.body;
+
+    const { title, description, contestants, contestType } = req.body;
     console.log(req.body);
     try {
         const newContest = new Contest({
-            name, description, contestants, type, owner: req.user.id
+            title, description, contestants, contestType, owner: req.user.id
         });
-
+        console.log(newContest);
         const contest = await newContest.save();
         console.log(`this is contest right after the save function ${contest}`)
         res.json(contest);

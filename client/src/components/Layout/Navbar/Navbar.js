@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import AuthContext from '../../../context/auth/AuthContext';
-import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import DropDownMenu from '../../Layout/DropdownMenu/DropdownMenu.js';
 import './Navbar.css';
@@ -43,9 +42,5 @@ const Navbar = (props) => {
     )
 }
 
-Navbar.propTypes = {
-    appName: PropTypes.string.isRequired
-
-};
 
 export default Navbar;
