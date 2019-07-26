@@ -17,44 +17,7 @@ import {
 
 const ContestState = props => {
   const initialState = {
-    contests: [
-      {
-        id: 1,
-        title: "Test Case",
-        contestants: [
-          {
-            name: "Test 1"
-          },
-          {
-            name: "Test2"
-          },
-          {
-            name: "Test 1"
-          },
-          {
-            name: "Test2"
-          }
-        ],
-        description: "This is sample data",
-        type: "buck",
-        owner: "Bob Villa"
-      },
-      {
-        id: 2,
-        title: "Test Case",
-        contestants: [
-          {
-            name: "Test 1"
-          },
-          {
-            name: "Test2"
-          }
-        ],
-        description: "This is sample data",
-        type: "buck",
-        owner: "Bob Villa"
-      }
-    ],
+    contestList: [],
     current: null,
     filtered: null,
     error: null
@@ -66,15 +29,17 @@ const ContestState = props => {
   const getContest = async () => {
     try {
       const res = await axios.get("/api/contest");
+      console.log(`this is response data ${JSON.stringify(res.data)}`);
 
       dispatch({
         type: GET_CONTEST,
         payload: res.data
       });
     } catch (err) {
+      console.log(err);
       dispatch({
-        type: CONTEST_ERROR,
-        payload: err.response.msg
+        type: CONTEST_ERROR
+        // payload: err.response.msg
       });
     }
   };
@@ -95,9 +60,10 @@ const ContestState = props => {
         payload: res.data
       });
     } catch (err) {
+      console.log(`this is the error ${err}`);
       dispatch({
         type: CONTEST_ERROR,
-        payload: err.response.msg
+        payload: err.msg
       });
     }
   };
@@ -174,7 +140,7 @@ const ContestState = props => {
   return (
     <ContestContext.Provider
       value={{
-        contests: state.contests,
+        contestList: state.contestList,
         current: state.current,
         filtered: state.filtered,
         error: state.error,

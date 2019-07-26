@@ -7,31 +7,42 @@ import ContestContext from '../../../context/contest/ContestContext';
 const Contest = () => {
     const contestContext = useContext(ContestContext);
 
-    const { contests, filtered, getContest, loading } = contestContext;
+    const { contestList, filtered, getContest, loading } = contestContext;
 
     useEffect(() => {
-        // getContest();
+        getContest();
         // eslint-disable-next-line
     }, []);
 
-    if (contests !== null && contests.length === 0 && !loading) {
+    if (contestList !== null && contestList.length === 0 && !loading) {
         return <h4>Please add a contest</h4>;
     }
-
+    console.log(contestList)
     return (
         <Fragment>
-            {contests !== null && !loading ? (
+            {contestList !== null && !loading ? (
                 <TransitionGroup>
-                    {filtered !== null
-                        ? filtered.map(contests => (
+                    {filtered !== null ? filtered.map(item => (
+                        <CSSTransition
+                            key={contestList._id}
+                            timeout={500}
+                            classNames='item'
+                        >
+                            <ContestItem contest={item} key={item.title} />
+                        </CSSTransition>
+                    ))
 
-                            <ContestItem contest={contests} />
+                        : contestList.array.forEach(element => {
+                            return <CSSTransition
+                                key={contestList.id}
+                                timeout={500}
+                                classNames='item'
+                            >
+                                <ContestItem contest={element} key={element.title} />
+                            </CSSTransition>
+                        })
+                    }
 
-                        ))
-                        : contests.map(contests => (
-                            <ContestItem contest={contests} />
-
-                        ))}
                 </TransitionGroup>
             ) : (
                     <Spinner />

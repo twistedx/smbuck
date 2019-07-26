@@ -9,26 +9,26 @@ import {
   CLEAR_CONTEST,
   CLEAR_FILTER,
   CONTEST_ERROR
-} from '../types';
+} from "../types";
 
 export default (state, action) => {
   switch (action.type) {
     case GET_CONTEST:
       return {
         ...state,
-        contests: action.payload,
+        contestList: [action.payload],
         loading: false
       };
     case ADD_CONTEST:
       return {
         ...state,
-        contest: [action.payload, ...state.contests],
+        contestList: [action.payload, ...state.contestList],
         loading: false
       };
     case UPDATE_CONTEST:
       return {
         ...state,
-        contest: state.contests.map(contest =>
+        contestList: state.contestList.map(contest =>
           contest._id === action.payload._id ? action.payload : contest
         ),
         loading: false
@@ -36,7 +36,7 @@ export default (state, action) => {
     case DELETE_CONTEST:
       return {
         ...state,
-        contest: state.contests.filter(
+        contestList: state.contestList.filter(
           contest => contest._id !== action.payload
         ),
         loading: false
@@ -44,7 +44,7 @@ export default (state, action) => {
     case CLEAR_CONTEST:
       return {
         ...state,
-        contests: null,
+        contestList: null,
         filtered: null,
         error: null,
         current: null
@@ -62,8 +62,8 @@ export default (state, action) => {
     case FILTER_CONTEST:
       return {
         ...state,
-        filtered: state.contests.filter(contest => {
-          const regex = new RegExp(`${action.payload}`, 'gi');
+        filtered: state.contestList.filter(contest => {
+          const regex = new RegExp(`${action.payload}`, "gi");
           return contest.name.match(regex) || contest.email.match(regex);
         })
       };
