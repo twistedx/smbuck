@@ -13,7 +13,7 @@ router.get('/', auth, async (req, res) => {
     try {
         const contestList = await Contest.find({});
         console.log(` This is whats in contestList ${contestList}`)
-        res.json(`Here is the contest list from the server ${contestList}`);
+        res.json(contestList);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')

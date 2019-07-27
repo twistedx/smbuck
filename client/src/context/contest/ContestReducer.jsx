@@ -16,7 +16,7 @@ export default (state, action) => {
     case GET_CONTEST:
       return {
         ...state,
-        contestList: [action.payload],
+        contestList: action.payload,
         loading: false
       };
     case ADD_CONTEST:
