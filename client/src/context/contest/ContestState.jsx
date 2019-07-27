@@ -29,7 +29,6 @@ const ContestState = props => {
   const getContest = async () => {
     try {
       const res = await axios.get("/api/contest");
-      console.log(`this is response data ${JSON.stringify(res.data)}`);
 
       dispatch({
         type: GET_CONTEST,
