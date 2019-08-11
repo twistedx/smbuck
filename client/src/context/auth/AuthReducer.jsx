@@ -7,6 +7,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS,
+  USER_NAME,
   SET_NAME
 } from "../types";
 
@@ -18,6 +19,10 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
         user: action.payload
+      };
+    case USER_NAME:
+      return {
+        userName: action.payload
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:

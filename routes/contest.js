@@ -44,11 +44,11 @@ router.get('/:id', auth, async (req, res) => {
 router.post('/', [auth], async (req, res) => {
     console.log("post route initiated")
 
-    const { title, description, contestants, contestType } = req.body;
-    console.log(req.body);
+    const { title, description, contestants, entryFee, contestType, rules, location, username } = req.body;
+    console.log(req.user);
     try {
         const newContest = new Contest({
-            title, description, contestants, contestType, owner: req.user.id
+            title, description, contestants, contestType, entryFee, rules, location, username, owner: req.user.id
         });
         console.log(newContest);
         const contest = await newContest.save();

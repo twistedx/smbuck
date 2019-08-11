@@ -17,7 +17,19 @@ const ContestSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    entryFee: {
+        type: Number
+    },
+    location: {
+        type: String
+    },
+    rules: {
+        type: String
+    },
     contestType: {
+        type: String
+    },
+    username: {
         type: String
     },
     owner: {

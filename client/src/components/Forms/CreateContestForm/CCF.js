@@ -27,29 +27,39 @@ const CCF = (props) => {
         title: '',
         contestants: [],
         description: '',
-        contestType: ''
+        contestType: '',
+        entryFee: '',
+        location: '',
+        rules: '',
+        username: ''
 
     });
 
 
-    const { title, contestants, description, contestType } = contest;
+    const { title, contestants, description, contestType, entryFee, rules, location } = contest;
 
     const onChange = e => setContest({ ...contest, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault()
-
+        const username = authContext.user.name;
         var temp = {
             ...contest,
             title,
             contestants,
             description,
-            contestType
+            contestType,
+            entryFee,
+            location,
+            rules,
+            username
 
         };
 
         contestContext.addContest(temp);
-
+        setTimeout(() => {
+            props.history.push('/');
+        }, 1000);
     }
 
     return (
@@ -80,6 +90,7 @@ const CCF = (props) => {
                                             value={description}
                                             placeholder='Details go here'
                                             onChange={onChange}
+                                            required
                                         />
                                     </div>
                                     <div className='form-group'>
@@ -87,8 +98,46 @@ const CCF = (props) => {
                                         <input
                                             type='text'
                                             name='contestType'
+                                            placeholder='Buck, Pig, Dove, etc'
                                             value={contestType}
                                             onChange={onChange}
+                                            required
+
+                                        />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor='type'>Scoring Ruleset</label>
+                                        <input
+                                            type='text'
+                                            name='rules'
+                                            placeholder='Boone and Crocket'
+                                            value={rules}
+                                            onChange={onChange}
+                                            required
+
+                                        />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor='type'>Where is the location of the contest</label>
+                                        <input
+                                            type='text'
+                                            name='location'
+                                            placeholder='Santa Maria, CA'
+                                            value={location}
+                                            onChange={onChange}
+                                            required
+
+                                        />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor='type'>What is your entry fee</label>
+                                        <input
+                                            type='number'
+                                            name='entryFee'
+                                            placeholder='10, 20, 30 etc'
+                                            value={entryFee}
+                                            onChange={onChange}
+                                            required
 
                                         />
                                     </div>

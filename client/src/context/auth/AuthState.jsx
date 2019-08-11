@@ -12,6 +12,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  USER_NAME,
   CLEAR_ERRORS
 } from "../types";
 
@@ -37,6 +38,23 @@ const AuthState = props => {
 
       dispatch({
         type: USER_LOADED,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
+
+  const getUserName = async id => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    try {
+      const res = await axios.get("/api/auth/" + id);
+
+      dispatch({
+        type: USER_NAME,
         payload: res.data
       });
     } catch (err) {
@@ -109,6 +127,7 @@ const AuthState = props => {
         user: state.user,
         error: state.error,
         register,
+        getUserName,
         loadUser,
         login,
         logout,
