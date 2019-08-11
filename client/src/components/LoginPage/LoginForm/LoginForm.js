@@ -22,6 +22,10 @@ const LoginForm = props => {
             setAlert(error, 'danger');
             clearErrors();
         }
+        if (error === 'Invalid password') {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
         // eslint-disable-next-line
     }, [error, isAuthenticated, props.history]);
 

@@ -43,6 +43,23 @@ const ContestState = props => {
     }
   };
 
+  const getContestWithID = async id => {
+    try {
+      const res = await axios.get("/api/contest/" + id);
+      console.log(res);
+      dispatch({
+        type: GET_CONTEST,
+        payload: res.data
+      });
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: CONTEST_ERROR
+        // payload: err.response.msg
+      });
+    }
+  };
+
   // Add Contest
   const addContest = async contest => {
     const config = {
@@ -143,6 +160,7 @@ const ContestState = props => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        getContestWithID,
         addContest,
         deleteContest,
         setCurrent,

@@ -22,6 +22,21 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
+//@route        GET api/auth
+//@description  GET logged in user
+//@access       PRIVATE 
+
+router.get('/:id', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id)
+        res.json(user.name);
+
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send('Server Error')
+    }
+})
+
 //@route        POST api/auth
 //@description  Auth user and get token
 //@access       PUBLIC
@@ -47,7 +62,8 @@ router.post('/', [
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid Crendetials' });
+            console.log('invalid password');
+            return res.status(400).json({ msg: 'Invalid password' });
         }
         const payload = {
             user: {

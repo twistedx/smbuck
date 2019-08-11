@@ -12,6 +12,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 import Footer from './components/Layout/Footer/Footer';
 import EditUser from './components/Forms/EditUser/EditUser';
 import EditEntry from './components/Forms/EditEntry/EditEntry';
+import ContestDisplay from './components/DashboardPage/Contest/ContestDisplay';
 import CCF from './components/Forms/CreateContestForm/CCF';
 import AlertState from './context/alert/AlertState';
 import './App.css';
@@ -41,6 +42,7 @@ const App = () => {
               <Route exact path='/login' component={LoginPage} key={LoginPage.name} />
               <Route exact path='/edituser' component={EditUser} key={EditUser.name} />
               <Route exact path='/ccf' component={CCF} key={CCF.name} />
+              <Route exact path='/ContestDisplay/:id' component={ContestDisplay} key={ContestDisplay.name} />
               <Route exact path='/editentry/:id' component={EditEntry} key={EditEntry.name} />
             </Switch>
             <Footer />
