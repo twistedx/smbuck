@@ -3,17 +3,20 @@ import Navbar from '../../Layout/Navbar/Navbar';
 import ContestContext from '../../../context/contest/ContestContext';
 import AuthContext from '../../../context/auth/AuthContext';
 import Placeholder from './Placeholder';
+import JoinContestModal from './JoinContestModal';
 
 const ContestDisplay = (props) => {
 
     const contestContext = useContext(ContestContext);
     const authContext = useContext(AuthContext);
     const { current } = contestContext;
+    const [open, setOpen] = useState(false);
     // const userName = getUserName(current.owner);
 
 
     return (
         <main>
+            <JoinContestModal open={open} />
             <Navbar home={true} dropdown={true} />
             <div className="container">
                 <div className="row">
@@ -57,7 +60,7 @@ const ContestDisplay = (props) => {
                                         <p>{current.entryFee}</p>
 
                                     </div>
-                                    <button className="btn btn-dark editButton">Join</button>
+                                    <button onClick={() => { setOpen(true) }} className="btn btn-dark editButton">Join</button>
                                 </div>
                             </div>
                         </div>

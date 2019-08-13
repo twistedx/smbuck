@@ -1,0 +1,29 @@
+#modal{
+    position: absolute;
+    width: 60vw;
+    height: 40vh;
+    border: 1px grey inset;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px grey;
+    top: calc(50% - 20vh);
+    z-index: 100;
+    background-color: white;
+}
+
+#modalClose{
+    font-size: calc((3vw + 3vh) / 2);
+    position: absolute;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    right: calc((1vw + 1vh) / 2);
+    width: calc((3vw + 3vh) / 2);
+    height: calc((3vw + 3vh) / 2);
+    /* border: 1px inset grey; */
+
+}
+#modalClose:hover{
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition: transform ease-in-out 1s;
+}
