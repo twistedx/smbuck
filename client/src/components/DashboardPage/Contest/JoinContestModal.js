@@ -29,7 +29,14 @@ const JoinContestModal = props => {
     return (
         <section id='modal' style={ props.open ? styles.show : styles.hide }>
             <div id='modalClose'>
-                <div> &#215;  </div>
+                <div class="inputForm"> &#215;  
+                    <input class="contestInput" id="name" type="text" name="name"></input>
+                    <input class="contestInput" id="email" type="email" name="email"></input>
+                    <input class="contestInput" id="phone" type="text" name="phone"></input>
+                    <input class="contestInput" id="team" type="text" name="team"></input>
+                    <input class="contestInput" id="contestRef" type="text" name="refereance"></input>
+                    <input class="contestInput" id="date" type="date" name="date"></input>
+                </div>
             </div>
         </section>
     )

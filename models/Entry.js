@@ -10,13 +10,22 @@ const EntrySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    team: {
+    email: {
         type: String,
         required: true
+    },
+    phone: {
+        type: String
+    },
+    team: {
+        type: String
     },
     hasPaid: {
         type: Boolean,
         default: false
+    },
+    contestRef: {
+        type: String
     },
     date: {
         type: Date,
