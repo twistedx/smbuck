@@ -31,6 +31,7 @@ const JoinContestModal = props => {
             <div id='modalClose'>
                 <div> &#215;  </div>
             </div>
+            <button type="btn" id="joinContestSubmit">Submit</button>
         </section>
     )
 }
