@@ -28,9 +28,8 @@
     transition: transform ease-in-out 1s;
 }
 .inputForm {
-    text-align: center;   
-}
-.contestInput {
-    width: 20px;
-    padding-top: 15px;
+    position: relative;
+    top: 10%;
+    width: 80%;
+    margin-left: 10%;
 }
