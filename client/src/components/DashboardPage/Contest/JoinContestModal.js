@@ -36,6 +36,7 @@ const JoinContestModal = props => {
                 <input class="contestInput" id="contestRef" type="text" name="refereance" placeholder="Refereance Name"></input>
                 <input class="contestInput" id="date" type="date" name="date"></input>
             </div>
+            <button type="btn" id="joinContestSubmit">Submit</button>
         </section>
     )
 }
