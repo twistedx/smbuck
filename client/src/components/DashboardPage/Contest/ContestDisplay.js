@@ -58,9 +58,13 @@ const ContestDisplay = (props) => {
                                     <div className="col s12 m6">
                                         <strong><p>Entry Fee:</p></strong>
                                         <p>{current.entryFee}</p>
+                                    </div>
+
+                                    <div className="col s12">
+                                        <strong><p>Contestants:</p></strong>
 
                                     </div>
-                                    <button onClick={() => { setOpen(true) }} className="btn btn-dark editButton">Join</button>
+                                    <button onClick={() => { setOpen(true) }} className="btn" id="EditJoinBtn">Join</button>
                                 </div>
                             </div>
                         </div>

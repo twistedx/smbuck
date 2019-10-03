@@ -54,10 +54,10 @@ router.post('/', [auth, [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const { name, team, hasPaid, description } = req.body;
+    const { name, email, phone, team, hasPaid, contestRef, } = req.body;
     try {
         const newEntry = new Entry({
-            name, team, hasPaid, description, user: req.user.id
+            name, email, phone, team, hasPaid, contestRef, user: req.user.id
         });
 
         const entry = await newEntry.save();
@@ -74,14 +74,16 @@ router.post('/', [auth, [
 //@access       Private
 
 router.put('/:id', auth, async (req, res) => {
-    const { name, team, hasPaid, description } = req.body;
+    const { name, phone, email, team, hasPaid, contestRef } = req.body;
     //build a entry object
 
     const entryFields = {};
     if (name) entryFields.name = name;
-    if (name) entryFields.email = role;
-    if (name) entryFields.hasPaid = hasPaid;
-    if (name) entryFields.description = description;
+    if (phone) entryFields.phone = phone;
+    if (email) entryFields.email = email;
+    if (hasPaid) entryFields.hasPaid = hasPaid;
+    if (team) entryFields.team = team;
+    if (contestRef) entryFields.contestRef = contestRef;
 
     try {
         let entry = await Entry.findById(req.params.id);
