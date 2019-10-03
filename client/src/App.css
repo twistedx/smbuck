@@ -16,6 +16,7 @@ main {
 }
 
 #editJob,
+#EditJoinBtn,
 #deleteJob {
   min-width: 100px;
   margin: 15px;
@@ -26,6 +27,10 @@ main {
 }
 #EditJobBtn button {
   width: 100px;
+  margin: 15px;
+}
+#EditJoinBtn {
+  width: 120px;
   margin: 15px;
 }
 #editTc,
