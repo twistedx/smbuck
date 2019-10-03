@@ -27,3 +27,9 @@
     transform: rotate(360deg);
     transition: transform ease-in-out 1s;
 }
+.inputForm {
+    position: relative;
+    top: 10%;
+    width: 80%;
+    margin-left: 10%;
+}
